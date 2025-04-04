@@ -1,0 +1,51 @@
+Start Zookeeper:
+Start terminal from Kafka folder(C:\kafka_2.13-3.7.0>) and run below command: (Without quote)
+"bin\windows\zookeeper-server-start.bat config\zookeeper.properties"
+
+Zookeeper default port: 2181
+
+To start Kafka server
+Start terminal from Kafka folder(C:\kafka_2.13-3.7.0>) and run below command: (Without quote)
+"C:\kafka_2.13-3.7.0>bin\windows\kafka-server-start.bat config\server.properties"
+
+Kafka server/ broker default port: 9092
+
+Command to create a topic:
+"C:\kafka_2.13-3.7.0>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --topic jay-topic-2 --partitions 3 --replication-factor 1"
+
+Kafka topic default partition: 1
+
+List all topics:
+"C:\kafka_2.13-3.7.0>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list"
+
+Describe a topic:
+"C:\kafka_2.13-3.7.0>bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic jay-topic-1"
+
+Start a producer using cmd:
+"bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic jay-topic-1"
+
+Start a consumer: 
+"bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic jay-topic-1 --from-beginning"
+
+Send bulp data to from producer using file
+"bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic jay-topic-1 <C:\Users\jmish\Downloads\KafkaTest.txt"
+===========================================================================
+Download kafka and zookeeper using docker.(Before it start docker desktop)
+	Run docker compose file using : docker compose -f docker-compose.yml up
+
+After all image download, Run
+	docker exec -it kafka /bin/sh 
+
+Go inside :
+	 /opt/kafka_2.13-2.8.1/bin  (Here all the script files are present)
+
+Create a topic:
+	kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic quickstart
+
+Start producer:
+	kafka-console-producer.sh --topic quickstart --bootstrap-server localhost:9092
+To start a consumer, Open a new terminal and run 
+	docker exec -it kafka /bin/sh
+	kafka-console-consumer.sh --topic quickstart --from-beginning --bootstrap-server localhost:9092
+
+
